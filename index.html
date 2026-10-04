@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>nuvayaQ | Women's and baby clothing, Qatar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F2FB;--ink:#1A1440;--mut:#615C88;--card:rgba(255,255,255,.7);--line:rgba(26,20,64,.12);--a:#8E6BFF;--b:#35D6C4;--c:#FF9EC0;--d:#FFC38A;--btn:#1A1440;--btnt:#fff;
+--disp:'Unbounded','Trebuchet MS',sans-serif;--body:'Manrope','Segoe UI',sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120F2A;--ink:#F1EEFF;--mut:#A9A3D0;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.14);--btn:#F1EEFF;--btnt:#120F2A}}
+:root[data-theme="dark"]{--bg:#120F2A;--ink:#F1EEFF;--mut:#A9A3D0;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.14);--btn:#F1EEFF;--btnt:#120F2A}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--a);outline-offset:3px;border-radius:8px}
+.glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,var(--a),transparent 65%);opacity:.22;transform:translate(-50%,-50%);left:50%;top:30%;filter:blur(30px);transition:left .4s ease-out,top .4s ease-out}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px auto 0;width:min(1120px,calc(100% - 24px));padding:10px 14px 10px 22px;border-radius:999px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.logo{font:700 20px var(--disp);letter-spacing:-.04em;text-decoration:none;color:var(--ink)}
+.logo i{font-style:normal;background:linear-gradient(120deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav .links{display:flex;gap:22px}
+nav a.l{color:var(--mut);text-decoration:none;font-weight:500;font-size:15px}
+nav a.l:hover{color:var(--ink)}
+.bag{position:relative;display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--btn);color:var(--btnt);font-weight:700;font-size:15px}
+.bag b{min-width:22px;height:22px;border-radius:11px;background:linear-gradient(135deg,var(--b),var(--a));color:#10122e;display:grid;place-items:center;font-size:12px}
+.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.18) rotate(-4deg)}}
+main{position:relative;z-index:1}
+.hero{position:relative;min-height:calc(100svh - 70px);display:grid;place-items:center;text-align:center;padding:48px 20px 80px;overflow:hidden}
+.orb{position:absolute;width:min(70vw,620px);aspect-ratio:1;left:50%;top:50%;transform:translate(-50%,-52%);z-index:0;filter:blur(2px)}
+.orb span{position:absolute;inset:0;border-radius:42% 58% 63% 37%/45% 40% 60% 55%;mix-blend-mode:multiply;opacity:.85;animation:morph 14s ease-in-out infinite alternate}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .orb span{mix-blend-mode:screen;opacity:.5}}
+.orb span:nth-child(1){background:radial-gradient(circle at 30% 30%,var(--a),transparent 70%)}
+.orb span:nth-child(2){background:radial-gradient(circle at 70% 40%,var(--b),transparent 70%);animation-duration:18s;animation-delay:-5s}
+.orb span:nth-child(3){background:radial-gradient(circle at 50% 75%,var(--c),transparent 70%);animation-duration:22s;animation-delay:-9s}
+@keyframes morph{0%{border-radius:42% 58% 63% 37%/45% 40% 60% 55%;transform:rotate(0) scale(1)}50%{border-radius:60% 40% 38% 62%/58% 62% 38% 42%;transform:rotate(120deg) scale(1.08)}100%{border-radius:38% 62% 52% 48%/40% 55% 45% 60%;transform:rotate(300deg) scale(.96)}}
+.hero>div{position:relative;z-index:1;max-width:900px}
+.word{font:700 clamp(54px,14vw,168px)/.95 var(--disp);letter-spacing:-.06em;margin:0}
+.word .ch{display:inline-block;background:linear-gradient(110deg,var(--ink) 20%,var(--a) 45%,var(--c) 55%,var(--ink) 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s cubic-bezier(.2,.9,.2,1) both,sheen 7s linear infinite;animation-delay:calc(var(--i)*70ms),calc(var(--i)*70ms + .9s)}
+@keyframes rise{from{transform:translateY(80%) rotateX(80deg);opacity:0;filter:blur(10px)}}
+@keyframes sheen{to{background-position:-250% 0}}
+.hero h2{font:500 clamp(18px,2.6vw,28px)/1.35 var(--disp);letter-spacing:-.03em;margin:22px auto 10px;max-width:22em}
+.hero p{color:var(--mut);max-width:34em;margin:0 auto 30px;font-size:18px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--btn);color:var(--btnt);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px -10px var(--a)}
+.btn.g{background:var(--card);color:var(--ink);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.chip{position:absolute;z-index:1;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(12px);font-size:13px;font-weight:700;animation:float 6s ease-in-out infinite}
+.chip.c1{left:6%;top:24%}.chip.c2{right:7%;top:36%;animation-delay:-2s}.chip.c3{left:12%;bottom:16%;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-16px)}}
+.marq{overflow:hidden;border-block:1px solid var(--line);padding:18px 0;background:var(--card)}
+.marq div{display:flex;gap:44px;width:max-content;animation:scroll 32s linear infinite;font:500 clamp(20px,3vw,34px) var(--disp);letter-spacing:-.04em;white-space:nowrap}
+.marq em{font-style:normal;color:var(--a)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+section{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:90px 0 20px}
+h3{font:700 clamp(28px,5vw,52px)/1.05 var(--disp);letter-spacing:-.05em;margin:0 0 10px}
+.sub{color:var(--mut);margin:0 0 28px;max-width:36em}
+.tabs{display:inline-flex;padding:5px;gap:4px;border-radius:999px;background:var(--card);border:1px solid var(--line);margin-bottom:28px;position:relative}
+.tabs button{position:relative;z-index:1;padding:10px 22px;border-radius:999px;font-weight:700;color:var(--mut);transition:color .3s,background .3s}
+.tabs button[aria-pressed=true]{background:var(--btn);color:var(--btnt)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{position:relative;border-radius:28px;background:var(--card);border:1px solid var(--line);padding:14px 14px 18px;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .3s;backdrop-filter:blur(8px);animation:pop .6s cubic-bezier(.2,.9,.2,1) both;animation-delay:calc(var(--n)*60ms)}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.94)}}
+.card:hover{box-shadow:0 24px 50px -24px var(--a)}
+.art{height:230px;border-radius:20px;display:grid;place-items:center;position:relative;overflow:hidden}
+.art::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-100%);transition:transform .9s}
+.card:hover .art::after{transform:translateX(100%)}
+.art svg{width:62%;filter:drop-shadow(0 18px 18px rgba(26,20,64,.25));animation:float 7s ease-in-out infinite;animation-delay:calc(var(--n)*-600ms)}
+.tag{position:absolute;top:12px;left:12px;z-index:2;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.8);color:#1A1440;font-size:12px;font-weight:700}
+.card h4{font:500 16px/1.25 var(--disp);letter-spacing:-.03em;margin:16px 4px 4px}
+.price{margin:0 4px 12px;font-weight:700;color:var(--mut)}
+.sizes{display:flex;flex-wrap:wrap;gap:6px;margin:0 4px 14px}
+.sizes button{padding:5px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:500;transition:all .2s}
+.sizes button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.add{width:100%;padding:13px;border-radius:16px;background:var(--btn);color:var(--btnt);font-weight:700;transition:transform .2s}
+.add:active{transform:scale(.96)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.step{padding:26px;border-radius:26px;background:var(--card);border:1px solid var(--line)}
+.step span{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));color:#10122e;font:700 18px var(--disp);margin-bottom:14px}
+.step h4{font:500 18px var(--disp);letter-spacing:-.03em;margin:0 0 6px}.step p{margin:0;color:var(--mut)}
+footer{margin-top:90px;padding:50px 20px calc(40px + env(safe-area-inset-bottom,0px));text-align:center;border-top:1px solid var(--line);color:var(--mut)}
+footer .logo{font-size:34px}
+.shade{position:fixed;inset:0;background:rgba(10,8,30,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:40}
+.shade.on{opacity:1;pointer-events:auto}
+aside{position:fixed;right:0;top:0;bottom:0;width:min(440px,100%);z-index:50;background:var(--bg);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .5s cubic-bezier(.2,.9,.2,1);padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px)}
+aside.on{transform:none}
+aside header{display:flex;justify-content:space-between;align-items:center}
+aside h3{font-size:26px;margin:0}
+.x{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);font-size:20px}
+.items{flex:1;overflow-y:auto;margin:16px 0}
+.it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);animation:pop .4s both}
+.it .th{width:56px;height:56px;border-radius:14px;flex:none;display:grid;place-items:center}.it .th svg{width:60%}
+.it div.i{flex:1;min-width:0}.it b{display:block;font-size:14px;line-height:1.3}.it small{color:var(--mut)}
+.q{display:flex;align-items:center;gap:8px}.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line)}
+.empty{text-align:center;color:var(--mut);padding:50px 10px}
+.form{display:grid;gap:8px}
+.form input,.form textarea{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.err{color:#d6336c;font-size:13px;min-height:18px;margin:0}
+.tot{display:flex;justify-content:space-between;font:700 18px var(--disp);letter-spacing:-.03em;margin:10px 0}
+.wa{width:100%;padding:16px;border-radius:18px;background:linear-gradient(120deg,#25D366,#35D6C4);color:#06241a;font-weight:700;font-size:16px;display:flex;justify-content:center;gap:10px;align-items:center}
+.wa:disabled{opacity:.45;cursor:not-allowed}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,120px);z-index:60;padding:12px 22px;border-radius:999px;background:var(--btn);color:var(--btnt);font-weight:700;transition:transform .45s cubic-bezier(.2,1.2,.3,1)}
+.toast.on{transform:translate(-50%,0)}
+@media (max-width:720px){nav .links{display:none}.chip{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="glow" id="glow"></div>
+<nav>
+  <a class="logo" href="#top">nuvaya<i>Q</i></a>
+  <div class="links"><a class="l" href="#shop" data-go="w">Women</a><a class="l" href="#shop" data-go="b">Baby</a><a class="l" href="#how">How to order</a></div>
+  <button class="bag" id="bagBtn" aria-label="Open bag">Bag <b id="cnt">0</b></button>
+</nav>
+<main id="top">
+  <div class="hero">
+    <div class="orb" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="chip c1">Designed in Doha</div><div class="chip c2">Order on WhatsApp</div><div class="chip c3">Women and baby</div>
+    <div>
+      <h1 class="word" id="word" aria-label="nuvayaQ"></h1>
+      <h2>Clothing for her, and for the little ones.</h2>
+      <p>Modest, modern pieces for women and soft essentials for babies. Fill your bag, then send your order to us on WhatsApp.</p>
+      <div class="cta"><a class="btn" href="#shop" data-go="w">Shop women</a><a class="btn g" href="#shop" data-go="b">Shop baby</a></div>
+    </div>
+  </div>
+  <div class="marq" aria-hidden="true"><div id="mq"></div></div>
+  <section id="shop">
+    <h3>The collection</h3>
+    <p class="sub">Pick a size, add to your bag, and check out through WhatsApp. Prices are in Qatari riyals (QAR).</p>
+    <div class="tabs" role="group" aria-label="Filter"><button data-f="all" aria-pressed="true">All</button><button data-f="w" aria-pressed="false">Women</button><button data-f="b" aria-pressed="false">Baby</button></div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section id="how">
+    <h3>How ordering works</h3>
+    <p class="sub">No account and no card details on this site.</p>
+    <div class="steps">
+      <div class="step"><span>1</span><h4>Fill your bag</h4><p>Choose your pieces and sizes.</p></div>
+      <div class="step"><span>2</span><h4>Send on WhatsApp</h4><p>Add your name and address, then tap Order on WhatsApp. Your list is written for you.</p></div>
+      <div class="step"><span>3</span><h4>We confirm</h4><p>We reply with availability, delivery time and payment details.</p></div>
+    </div>
+  </section>
+</main>
+<footer><a class="logo" href="#top">nuvaya<i>Q</i></a><p>Women's and baby clothing, Qatar.</p><p><a href="#" id="fwa" style="color:inherit">Chat with us on WhatsApp</a></p></footer>
+
+<div class="shade" id="shade"></div>
+<aside id="drawer" aria-label="Shopping bag" aria-hidden="true">
+  <header><h3>Your bag</h3><button class="x" id="close" aria-label="Close bag">×</button></header>
+  <div class="items" id="items"></div>
+  <div class="form" id="form">
+    <input id="nm" placeholder="Your name" autocomplete="name">
+    <input id="ph" placeholder="Mobile number (optional)" inputmode="tel" autocomplete="tel">
+    <textarea id="ad" rows="2" placeholder="Delivery area and address in Qatar"></textarea>
+    <p class="err" id="err"></p>
+    <div class="tot"><span>Total</span><span id="tot">QAR 0</span></div>
+    <button class="wa" id="send"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.3.500-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.400.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400z"/></svg>Order on WhatsApp</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+// Change this to the store's WhatsApp number: country code + number, digits only (Qatar = 974)
+const WA="97400000000";
+const SH={dress:"M38 8L62 8L60 30L76 112L24 112L40 30Z",abaya:"M36 8Q50 18 64 8L86 42L80 112L20 112L14 42Z",top:"M34 10Q50 22 66 10L92 34L82 52L72 44L72 108L28 108L28 44L18 52L8 34Z",onesie:"M36 10Q50 22 64 10L88 28L78 44L68 38L68 80Q60 94 50 94Q40 94 32 80L32 38L22 44L12 28Z",romper:"M36 10Q50 22 64 10L84 26L76 40L68 36L70 92L56 92L50 70L44 92L30 92L32 36L24 40L16 26Z"};
+const WS=["XS","S","M","L","XL"],BS=["0-3m","3-6m","6-12m","1-2y"];
+const P=[
+{n:"Aurora Pleat Abaya",c:"w",p:389,s:"abaya",k:["#8E6BFF","#35D6C4"],t:"New"},
+{n:"Lumen Satin Dress",c:"w",p:259,s:"dress",k:["#FF9EC0","#FFC38A"]},
+{n:"Orbit Knit Top",c:"w",p:179,s:"top",k:["#35D6C4","#8E6BFF"]},
+{n:"Halo Modest Kaftan",c:"w",p:299,s:"abaya",k:["#FFC38A","#FF9EC0"],t:"Popular"},
+{n:"Nova Cloud Hoodie",c:"w",p:199,s:"top",k:["#B7A4FF","#7FE8DA"]},
+{n:"Velvet Dusk Dress",c:"w",p:279,s:"dress",k:["#6D4DE0","#FF9EC0"]},
+{n:"Cloud Onesie",c:"b",p:69,s:"onesie",k:["#BFF3EC","#B7A4FF"],t:"Soft cotton"},
+{n:"Stardust Romper",c:"b",p:89,s:"romper",k:["#FFD3E2","#FFC38A"],t:"New"},
+{n:"Mini Aurora Dress",c:"b",p:109,s:"dress",k:["#B7A4FF","#FF9EC0"]},
+{n:"Tiny Orbit Top",c:"b",p:79,s:"top",k:["#7FE8DA","#B7A4FF"]},
+{n:"Lullaby Sleepsuit",c:"b",p:85,s:"romper",k:["#E6DCFF","#BFF3EC"]},
+{n:"Moon Baby Onesie",c:"b",p:65,s:"onesie",k:["#FFE0B8","#FFB6CF"],t:"Popular"}
+].map((x,i)=>({...x,id:i}));
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const fmt=n=>"QAR "+n.toLocaleString("en-US");
+const art=(p,id)=>`<svg viewBox="0 0 100 120" aria-hidden="true"><defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.k[0]}"/><stop offset="1" stop-color="${p.k[1]}"/></linearGradient></defs><path d="${SH[p.s]}" fill="url(#g${id})"/><path d="${SH[p.s]}" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+const bg=p=>`background:linear-gradient(145deg,${p.k[0]}55,${p.k[1]}44)`;
+
+// hero wordmark: one orchestrated entrance
+$("#word").innerHTML=[..."nuvayaQ"].map((c,i)=>`<span class="ch" style="--i:${i}" aria-hidden="true">${c}</span>`).join("");
+$("#mq").innerHTML=Array(2).fill(["Abayas","Dresses","Knitwear","Baby onesies","Rompers","Sleepsuits","Modest wear"].map(t=>`<span>${t}</span><em>✦</em>`).join("")).join("");
+
+// products
+let filter="all",sel={},cart=[];
+try{cart=JSON.parse(localStorage.getItem("nvq")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("nvq",JSON.stringify(cart))}catch(e){}};
+function grid(){
+  const list=P.filter(p=>filter==="all"||p.c===filter);
+  $("#grid").innerHTML=list.map((p,n)=>{
+    const S=p.c==="w"?WS:BS,cur=sel[p.id]||S[0];
+    return `<article class="card" style="--n:${n}" data-id="${p.id}"><div class="art" style="${bg(p)}">${p.t?`<span class="tag">${p.t}</span>`:""}${art(p,p.id)}</div><h4>${p.n}</h4><p class="price">${fmt(p.p)}</p><div class="sizes" role="group" aria-label="Size">${S.map(s=>`<button data-sz="${s}" aria-pressed="${s===cur}">${s}</button>`).join("")}</div><button class="add">Add to bag</button></article>`}).join("");
+}
+grid();
+$$(".tabs button").forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b));grid()});
+$$("[data-go]").forEach(a=>a.addEventListener("click",()=>{filter=a.dataset.go;$$(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f===filter));grid()}));
+
+// tilt
+$("#grid").addEventListener("pointermove",e=>{const c=e.target.closest(".card");if(!c||e.pointerType!=="mouse")return;const r=c.getBoundingClientRect();c.style.setProperty("--ry",((e.clientX-r.left)/r.width-.5)*10+"deg");c.style.setProperty("--rx",-((e.clientY-r.top)/r.height-.5)*10+"deg")});
+$("#grid").addEventListener("pointerout",e=>{const c=e.target.closest(".card");if(c){c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")}});
+addEventListener("pointermove",e=>{const g=$("#glow");g.style.left=e.clientX+"px";g.style.top=e.clientY+"px"});
+
+// grid clicks: sizes + add
+$("#grid").addEventListener("click",e=>{
+  const card=e.target.closest(".card");if(!card)return;const id=+card.dataset.id;
+  const sz=e.target.closest("[data-sz]");
+  if(sz){sel[id]=sz.dataset.sz;$$(".sizes button",card).length;[...card.querySelectorAll(".sizes button")].forEach(b=>b.setAttribute("aria-pressed",b===sz));return}
+  if(e.target.closest(".add")){
+    const p=P[id],size=sel[id]||(p.c==="w"?WS[0]:BS[0]),it=cart.find(x=>x.id===id&&x.size===size);
+    it?it.q++:cart.push({id,size,q:1});save();draw();fly(e.target.closest(".add"));toast(p.n+" added to your bag");
+  }
+});
+function fly(from){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  const a=from.getBoundingClientRect(),b=$("#bagBtn").getBoundingClientRect(),d=document.createElement("div");
+  d.style.cssText=`position:fixed;z-index:70;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#8E6BFF,#35D6C4);left:${a.left+a.width/2}px;top:${a.top+a.height/2}px;pointer-events:none`;
+  document.body.append(d);
+  d.animate([{transform:"translate(0,0) scale(1)"},{transform:`translate(${b.left+b.width/2-a.left-a.width/2}px,${b.top+b.height/2-a.top-a.height/2}px) scale(.3)`,opacity:.4}],{duration:700,easing:"cubic-bezier(.5,-.3,.7,1)"}).onfinish=()=>{d.remove();const bb=$("#bagBtn");bb.classList.remove("bump");void bb.offsetWidth;bb.classList.add("bump")};
+}
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),1800)}
+
+// bag
+const total=()=>cart.reduce((s,x)=>s+P[x.id].p*x.q,0);
+function draw(){
+  $("#cnt").textContent=cart.reduce((s,x)=>s+x.q,0);
+  $("#tot").textContent=fmt(total());
+  $("#send").disabled=!cart.length;
+  $("#items").innerHTML=cart.length?cart.map((x,i)=>{const p=P[x.id];return `<div class="it"><div class="th" style="${bg(p)}">${art(p,"c"+i)}</div><div class="i"><b>${p.n}</b><small>Size ${x.size} · ${fmt(p.p*x.q)}</small></div><div class="q"><button data-d="${i}" aria-label="Fewer">−</button><span>${x.q}</span><button data-u="${i}" aria-label="More">+</button></div></div>`}).join(""):`<div class="empty"><p>Your bag is empty.</p><button class="btn" id="shopNow">Browse the collection</button></div>`;
+}
+$("#items").addEventListener("click",e=>{
+  const d=e.target.closest("[data-d]"),u=e.target.closest("[data-u]");
+  if(d){const i=+d.dataset.d;--cart[i].q<1&&cart.splice(i,1)}else if(u){cart[+u.dataset.u].q++}else if(e.target.id==="shopNow"){open_(false);location.hash="#shop";return}else return;
+  save();draw();
+});
+function open_(on){$("#drawer").classList.toggle("on",on);$("#shade").classList.toggle("on",on);$("#drawer").setAttribute("aria-hidden",!on);if(on)$("#close").focus()}
+$("#bagBtn").onclick=()=>open_(true);$("#close").onclick=$("#shade").onclick=()=>open_(false);
+addEventListener("keydown",e=>e.key==="Escape"&&open_(false));
+
+// WhatsApp checkout
+$("#send").onclick=()=>{
+  const n=$("#nm").value.trim(),a=$("#ad").value.trim(),ph=$("#ph").value.trim();
+  if(!cart.length)return;
+  if(!n||!a){$("#err").textContent="Please add your name and delivery address.";return}
+  $("#err").textContent="";
+  const lines=cart.map(x=>`• ${x.q} x ${P[x.id].n} (Size ${x.size}) - ${fmt(P[x.id].p*x.q)}`).join("\n");
+  const msg=`Hello nuvayaQ! I would like to place an order:\n\n${lines}\n\nTotal: ${fmt(total())}\n\nName: ${n}${ph?"\nMobile: "+ph:""}\nDelivery: ${a}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+  toast("Opening WhatsApp");
+};
+$("#fwa").href=`https://wa.me/${WA}?text=${encodeURIComponent("Hello nuvayaQ!")}`;
+draw();
+</script>
+</body>
+</html>
