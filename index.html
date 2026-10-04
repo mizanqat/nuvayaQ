@@ -66,10 +66,12 @@ h3{font:700 clamp(28px,5vw,52px)/1.05 var(--disp);letter-spacing:-.05em;margin:0
 @keyframes pop{from{opacity:0;transform:translateY(30px) scale(.94)}}
 .card:hover{box-shadow:0 24px 50px -24px var(--a)}
 .art{height:230px;border-radius:20px;display:grid;place-items:center;position:relative;overflow:hidden}
-.art::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-100%);transition:transform .9s}
+.art::after{content:"";position:absolute;inset:-50%;z-index:2;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-100%);transition:transform .9s}
 .card:hover .art::after{transform:translateX(100%)}
 .art svg{width:62%;filter:drop-shadow(0 18px 18px rgba(26,20,64,.25));animation:float 7s ease-in-out infinite;animation-delay:calc(var(--n)*-600ms)}
-.tag{position:absolute;top:12px;left:12px;z-index:2;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.8);color:#1A1440;font-size:12px;font-weight:700}
+.art .ph{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:20px;transition:transform .5s ease-out}
+.card:hover .art .ph{transform:scale(1.06)}
+.tag{position:absolute;top:12px;left:12px;z-index:3;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.8);color:#1A1440;font-size:12px;font-weight:700}
 .card h4{font:500 16px/1.25 var(--disp);letter-spacing:-.03em;margin:16px 4px 4px}
 .price{margin:0 4px 12px;font-weight:700;color:var(--mut)}
 .sizes{display:flex;flex-wrap:wrap;gap:6px;margin:0 4px 14px}
@@ -92,7 +94,7 @@ aside h3{font-size:26px;margin:0}
 .x{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);font-size:20px}
 .items{flex:1;overflow-y:auto;margin:16px 0}
 .it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);animation:pop .4s backwards}
-.it .th{width:56px;height:56px;border-radius:14px;flex:none;display:grid;place-items:center}.it .th svg{width:60%}
+.it .th{width:56px;height:56px;border-radius:14px;flex:none;position:relative;display:grid;place-items:center;overflow:hidden}.it .th svg{width:60%}.it .th .ph{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:14px}
 .it div.i{flex:1;min-width:0}.it b{display:block;font-size:14px;line-height:1.3}.it small{color:var(--mut)}
 .q{display:flex;align-items:center;gap:8px}.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line)}
 .empty{text-align:center;color:var(--mut);padding:50px 10px}
@@ -179,11 +181,12 @@ const P=[
 {n:"Tiny Orbit Top",c:"b",p:79,s:"top",k:["#7FE8DA","#B7A4FF"]},
 {n:"Lullaby Sleepsuit",c:"b",p:85,s:"romper",k:["#E6DCFF","#BFF3EC"]},
 {n:"Moon Baby Onesie",c:"b",p:65,s:"onesie",k:["#FFE0B8","#FFB6CF"],t:"Popular"}
-].map((x,i)=>({...x,id:i}));
+].map((x,i)=>({...x,id:i,img:"https://picsum.photos/seed/nvq-"+x.n.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"/600/690"}));
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const fmt=n=>"QAR "+n.toLocaleString("en-US");
 const art=(p,id)=>`<svg viewBox="0 0 100 120" aria-hidden="true"><defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.k[0]}"/><stop offset="1" stop-color="${p.k[1]}"/></linearGradient></defs><path d="${SH[p.s]}" fill="url(#g${id})"/><path d="${SH[p.s]}" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
 const bg=p=>`background:linear-gradient(145deg,${p.k[0]}55,${p.k[1]}44)`;
+const shot=(p)=>`<img class="ph" src="${p.img}" alt="${p.n}" loading="lazy" decoding="async" onerror="this.remove()">`;
 
 // hero wordmark: one orchestrated entrance
 $("#word").innerHTML=[..."nuvayaQ"].map((c,i)=>`<span class="ch" style="--i:${i}" aria-hidden="true">${c}</span>`).join("");
@@ -197,7 +200,7 @@ function grid(){
   const list=P.filter(p=>filter==="all"||p.c===filter);
   $("#grid").innerHTML=list.map((p,n)=>{
     const S=p.c==="w"?WS:BS,cur=sel[p.id]||S[0];
-    return `<article class="card" style="--n:${n}" data-id="${p.id}"><div class="art" style="${bg(p)}">${p.t?`<span class="tag">${p.t}</span>`:""}${art(p,p.id)}</div><h4>${p.n}</h4><p class="price">${fmt(p.p)}</p><div class="sizes" role="group" aria-label="Size">${S.map(s=>`<button data-sz="${s}" aria-pressed="${s===cur}">${s}</button>`).join("")}</div><button class="add">Add to bag</button></article>`}).join("");
+    return `<article class="card" style="--n:${n}" data-id="${p.id}"><div class="art" style="${bg(p)}">${art(p,p.id)}${shot(p)}${p.t?`<span class="tag">${p.t}</span>`:""}</div><h4>${p.n}</h4><p class="price">${fmt(p.p)}</p><div class="sizes" role="group" aria-label="Size">${S.map(s=>`<button data-sz="${s}" aria-pressed="${s===cur}">${s}</button>`).join("")}</div><button class="add">Add to bag</button></article>`}).join("");
 }
 grid();
 $$(".tabs button").forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b));grid()});
@@ -233,7 +236,7 @@ function draw(){
   $("#cnt").textContent=cart.reduce((s,x)=>s+x.q,0);
   $("#tot").textContent=fmt(total());
   $("#send").disabled=!cart.length;$("#form").hidden=!cart.length;
-  $("#items").innerHTML=cart.length?cart.map((x,i)=>{const p=P[x.id];return `<div class="it"><div class="th" style="${bg(p)}">${art(p,"c"+i)}</div><div class="i"><b>${p.n}</b><small>Size ${x.size} · ${fmt(p.p*x.q)}</small></div><div class="q"><button data-d="${i}" aria-label="Fewer">−</button><span>${x.q}</span><button data-u="${i}" aria-label="More">+</button></div></div>`}).join(""):`<div class="empty"><p>Your bag is empty.</p><button class="btn" id="shopNow">Browse the collection</button></div>`;
+  $("#items").innerHTML=cart.length?cart.map((x,i)=>{const p=P[x.id];return `<div class="it"><div class="th" style="${bg(p)}">${art(p,"c"+i)}${shot(p)}</div><div class="i"><b>${p.n}</b><small>Size ${x.size} · ${fmt(p.p*x.q)}</small></div><div class="q"><button data-d="${i}" aria-label="Fewer">−</button><span>${x.q}</span><button data-u="${i}" aria-label="More">+</button></div></div>`}).join(""):`<div class="empty"><p>Your bag is empty.</p><button class="btn" id="shopNow">Browse the collection</button></div>`;
 }
 $("#items").addEventListener("click",e=>{
   const d=e.target.closest("[data-d]"),u=e.target.closest("[data-u]");
