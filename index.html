@@ -61,6 +61,10 @@ h3{font:700 clamp(28px,5vw,52px)/1.05 var(--disp);letter-spacing:-.05em;margin:0
 .tabs{display:inline-flex;padding:5px;gap:4px;border-radius:999px;background:var(--card);border:1px solid var(--line);margin-bottom:28px;position:relative}
 .tabs button{position:relative;z-index:1;padding:10px 22px;border-radius:999px;font-weight:700;color:var(--mut);transition:color .3s,background .3s}
 .tabs button[aria-pressed=true]{background:var(--btn);color:var(--btnt)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.chips button{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:14px;color:var(--mut);transition:background .2s,color .2s,border-color .2s}
+.chips button:hover{color:var(--ink);border-color:var(--ink)}
+.chips button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
 .card{position:relative;border-radius:28px;background:var(--card);border:1px solid var(--line);padding:14px 14px 18px;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .3s;backdrop-filter:blur(8px);animation:pop .6s cubic-bezier(.2,.9,.2,1) backwards;animation-delay:calc(var(--n)*60ms)}
 @keyframes pop{from{opacity:0;transform:translateY(30px) scale(.94)}}
@@ -72,7 +76,8 @@ h3{font:700 clamp(28px,5vw,52px)/1.05 var(--disp);letter-spacing:-.05em;margin:0
 .art .ph{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:20px;transition:transform .5s ease-out}
 .card:hover .art .ph{transform:scale(1.06)}
 .tag{position:absolute;top:12px;left:12px;z-index:3;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.8);color:#1A1440;font-size:12px;font-weight:700}
-.card h4{font:500 16px/1.25 var(--disp);letter-spacing:-.03em;margin:16px 4px 4px}
+.grp{display:block;margin:14px 4px 0;font:700 11px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.card h4{font:500 16px/1.25 var(--disp);letter-spacing:-.03em;margin:6px 4px 4px}
 .price{margin:0 4px 12px;font-weight:700;color:var(--mut)}
 .sizes{display:flex;flex-wrap:wrap;gap:6px;margin:0 4px 14px}
 .sizes button{padding:5px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:500;transition:all .2s}
@@ -124,7 +129,7 @@ aside h3{font-size:26px;margin:0}
     <div class="hc">
       <h1 class="word" id="word" aria-label="nuvayaQ"></h1>
       <h2>Clothing for her, and for the little ones.</h2>
-      <p>Modest, modern pieces for women and soft essentials for babies. Fill your bag, then send your order to us on WhatsApp.</p>
+      <p>Abayas, jalabiyas, dresses, hijabs and maternity wear for her — bodysuits, rompers, swaddles and gift sets for baby. Fill your bag, then send your order on WhatsApp.</p>
       <div class="cta"><a class="btn" href="#shop" data-go="w">Shop women</a><a class="btn g" href="#shop" data-go="b">Shop baby</a></div>
     </div>
   </div>
@@ -133,6 +138,7 @@ aside h3{font-size:26px;margin:0}
     <h3>The collection</h3>
     <p class="sub">Pick a size, add to your bag, and check out through WhatsApp. Prices are in Qatari riyals (QAR).</p>
     <div class="tabs" role="group" aria-label="Filter"><button data-f="all" aria-pressed="true">All</button><button data-f="w" aria-pressed="false">Women</button><button data-f="b" aria-pressed="false">Baby</button></div>
+    <div class="chips" id="chips" role="group" aria-label="Sub-category"></div>
     <div class="grid" id="grid"></div>
   </section>
   <section id="how">
@@ -166,23 +172,98 @@ aside h3{font-size:26px;margin:0}
 <script>
 // Change this to the store's WhatsApp number: country code + number, digits only (Qatar = 974)
 const WA="97400000000";
-const SH={dress:"M38 8L62 8L60 30L76 112L24 112L40 30Z",abaya:"M36 8Q50 18 64 8L86 42L80 112L20 112L14 42Z",top:"M34 10Q50 22 66 10L92 34L82 52L72 44L72 108L28 108L28 44L18 52L8 34Z",onesie:"M36 10Q50 22 64 10L88 28L78 44L68 38L68 80Q60 94 50 94Q40 94 32 80L32 38L22 44L12 28Z",romper:"M36 10Q50 22 64 10L84 26L76 40L68 36L70 92L56 92L50 70L44 92L30 92L32 36L24 40L16 26Z"};
+const SH={dress:"M38 8L62 8L60 30L76 112L24 112L40 30Z",abaya:"M36 8Q50 18 64 8L86 42L80 112L20 112L14 42Z",top:"M34 10Q50 22 66 10L92 34L82 52L72 44L72 108L28 108L28 44L18 52L8 34Z",onesie:"M36 10Q50 22 64 10L88 28L78 44L68 38L68 80Q60 94 50 94Q40 94 32 80L32 38L22 44L12 28Z",romper:"M36 10Q50 22 64 10L84 26L76 40L68 36L70 92L56 92L50 70L44 92L30 92L32 36L24 40L16 26Z",
+pant:"M30 6H70L74 44L66 114H54L50 62L46 114H34L26 44Z",scarf:"M26 8H74V66L66 82L58 66L50 82L42 66L34 82L26 66Z",bib:"M50 16C35 16 26 28 26 44C26 62 34 88 44 102C47 106 53 106 56 102C66 88 74 62 74 44C74 28 65 16 50 16Z",cap:"M24 78C24 42 34 24 50 24C66 24 76 42 76 78L76 86Q50 96 24 86Z",sock:"M44 14H62L64 62Q76 68 78 82Q80 98 64 104Q48 108 44 94L42 60Z",shoe:"M30 56Q30 40 46 40H58Q64 54 74 62Q84 70 84 82V92H30Z",blanket:"M18 24Q50 12 82 24V96Q50 108 18 96Z"};
 const WS=["XS","S","M","L","XL"],BS=["0-3m","3-6m","6-12m","1-2y"];
 // Demo photos: each product maps to a real photo whose subject matches its name (free Pexels license).
 const PX=id=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&h=690&fit=crop`;
 const P=[
-{n:"Aurora Pleat Abaya",c:"w",p:389,s:"abaya",k:["#8E6BFF","#35D6C4"],t:"New",img:PX(13791314)},
-{n:"Lumen Satin Dress",c:"w",p:259,s:"dress",k:["#FF9EC0","#FFC38A"],img:PX(37728714)},
-{n:"Orbit Knit Top",c:"w",p:179,s:"top",k:["#35D6C4","#8E6BFF"],img:PX(2343699)},
-{n:"Halo Modest Kaftan",c:"w",p:299,s:"abaya",k:["#FFC38A","#FF9EC0"],t:"Popular",img:PX(7249704)},
-{n:"Nova Cloud Hoodie",c:"w",p:199,s:"top",k:["#B7A4FF","#7FE8DA"],img:PX(7479808)},
-{n:"Velvet Dusk Dress",c:"w",p:279,s:"dress",k:["#6D4DE0","#FF9EC0"],img:PX(16894090)},
-{n:"Cloud Onesie",c:"b",p:69,s:"onesie",k:["#BFF3EC","#B7A4FF"],t:"Soft cotton",img:PX(3845426)},
-{n:"Stardust Romper",c:"b",p:89,s:"romper",k:["#FFD3E2","#FFC38A"],t:"New",img:PX(7578994)},
-{n:"Mini Aurora Dress",c:"b",p:109,s:"dress",k:["#B7A4FF","#FF9EC0"],img:PX(18746931)},
-{n:"Tiny Orbit Top",c:"b",p:79,s:"top",k:["#7FE8DA","#B7A4FF"],img:PX(32233693)},
-{n:"Lullaby Sleepsuit",c:"b",p:85,s:"romper",k:["#E6DCFF","#BFF3EC"],img:PX(8756307)},
-{n:"Moon Baby Onesie",c:"b",p:65,s:"onesie",k:["#FFE0B8","#FFB6CF"],t:"Popular",img:PX(9300617)}
+{n:"Aurora Pleat Abaya",c:"w",p:389,s:"abaya",k:["#8E6BFF","#35D6C4"],t:"New",g:"Abayas",img:PX(13791314)},
+{n:"Lumen Satin Dress",c:"w",p:259,s:"dress",k:["#FF9EC0","#FFC38A"],g:"Dresses",img:PX(37728714)},
+{n:"Orbit Knit Top",c:"w",p:179,s:"top",k:["#35D6C4","#8E6BFF"],g:"Tops & Tunics",img:PX(2343699)},
+{n:"Halo Modest Kaftan",c:"w",p:299,s:"abaya",k:["#FFC38A","#FF9EC0"],t:"Popular",g:"Kaftans & Jalabiyas",img:PX(7249704)},
+{n:"Nova Cloud Hoodie",c:"w",p:199,s:"top",k:["#B7A4FF","#7FE8DA"],g:"Knitwear",img:PX(7479808)},
+{n:"Velvet Dusk Dress",c:"w",p:279,s:"dress",k:["#6D4DE0","#FF9EC0"],g:"Dresses",img:PX(16894090)},
+{n:"Cloud Onesie",c:"b",p:69,s:"onesie",k:["#BFF3EC","#B7A4FF"],t:"Soft cotton",g:"Bodysuits & Tops",img:PX(3845426)},
+{n:"Stardust Romper",c:"b",p:89,s:"romper",k:["#FFD3E2","#FFC38A"],t:"New",g:"Rompers",img:PX(7578994)},
+{n:"Mini Aurora Dress",c:"b",p:109,s:"dress",k:["#B7A4FF","#FF9EC0"],g:"Frocks & Dresses",img:PX(18746931)},
+{n:"Tiny Orbit Top",c:"b",p:79,s:"top",k:["#7FE8DA","#B7A4FF"],g:"Bodysuits & Tops",img:PX(32233693)},
+{n:"Lullaby Sleepsuit",c:"b",p:85,s:"romper",k:["#E6DCFF","#BFF3EC"],g:"Sleepsuits",img:PX(8756307)},
+{n:"Moon Baby Onesie",c:"b",p:65,s:"onesie",k:["#FFE0B8","#FFB6CF"],t:"Popular",g:"Bodysuits & Tops",img:PX(9300617)},
+/* women: abayas */
+{n:"Onyx Open Abaya",c:"w",p:289,s:"abaya",k:["#2B2350","#8E6BFF"],g:"Abayas",img:PX(32279501)},
+{n:"Desert Rose Abaya",c:"w",p:359,s:"abaya",k:["#FF9EC0","#6D4DE0"],t:"Popular",g:"Abayas",img:PX(37577301)},
+{n:"Souq Walk Abaya",c:"w",p:249,s:"abaya",k:["#8E6BFF","#FFC38A"],t:"New",g:"Abayas",img:PX(34721675)},
+/* women: jalabiyas & kaftans */
+{n:"Pearl Thobe Jalabiya",c:"w",p:299,s:"abaya",k:["#FFC38A","#F4F2FB"],g:"Kaftans & Jalabiyas",img:PX(19500116)},
+{n:"Golden Thread Jalabiya",c:"w",p:329,s:"abaya",k:["#FFD38A","#8E6BFF"],t:"New",g:"Kaftans & Jalabiyas",img:PX(37577295)},
+{n:"Emerald Flow Kaftan",c:"w",p:269,s:"abaya",k:["#35D6C4","#1F8F7F"],g:"Kaftans & Jalabiyas",img:PX(6192466)},
+/* women: dresses & occasion */
+{n:"Blossom Modest Maxi",c:"w",p:239,s:"dress",k:["#FF9EC0","#B7A4FF"],g:"Dresses",img:PX(38474405)},
+{n:"Navy Grace Dress",c:"w",p:259,s:"dress",k:["#4A5BD7","#8E6BFF"],g:"Dresses",img:PX(37626146)},
+{n:"Rose Gala Gown",c:"w",p:499,s:"dress",k:["#FF6FA5","#FFC38A"],t:"Occasion",g:"Dresses",img:PX(39873874)},
+{n:"Emerald Night Gown",c:"w",p:549,s:"dress",k:["#1F8F7F","#35D6C4"],g:"Dresses",img:PX(39023446)},
+/* women: tops & tunics */
+{n:"Cloud White Blouse",c:"w",p:139,s:"top",k:["#F4F2FB","#D9D5F2"],g:"Tops & Tunics",img:PX(6203788)},
+{n:"Linen Breeze Tunic",c:"w",p:159,s:"top",k:["#FFE0B8","#FFC38A"],g:"Tops & Tunics",img:PX(14196290)},
+{n:"Sky Poplin Shirt",c:"w",p:129,s:"top",k:["#7FC7FF","#B7A4FF"],g:"Tops & Tunics",img:PX(1645901)},
+/* women: sets */
+{n:"Weekend Linen Set",c:"w",p:309,s:"top",k:["#7FE8DA","#FFC38A"],t:"New",g:"Sets & Two-Pieces",img:PX(37220860)},
+{n:"Duo Lounge Set",c:"w",p:269,s:"top",k:["#B7A4FF","#FF9EC0"],g:"Sets & Two-Pieces",img:PX(8004312)},
+/* women: trousers & denim */
+{n:"Tailored Wide Trouser",c:"w",p:169,s:"pant",k:["#2B2350","#615C88"],g:"Trousers & Denim",img:PX(28168174)},
+{n:"Everyday Wide Jeans",c:"w",p:179,s:"pant",k:["#4A6FE3","#7FC7FF"],g:"Trousers & Denim",img:PX(19995459)},
+{n:"Dune Palazzo Pant",c:"w",p:149,s:"pant",k:["#FFC38A","#E0A96D"],g:"Trousers & Denim",img:PX(19995460)},
+/* women: scarves & hijabs */
+{n:"Shayla Everyday Scarf",c:"w",p:49,s:"scarf",k:["#B7A4FF","#FF9EC0"],t:"Popular",z:["One size"],g:"Scarves & Hijabs",img:PX(13785176)},
+{n:"Crimson City Hijab",c:"w",p:59,s:"scarf",k:["#E34A5F","#FF9EC0"],z:["One size"],g:"Scarves & Hijabs",img:PX(14470373)},
+{n:"Olive Field Hijab",c:"w",p:55,s:"scarf",k:["#7FA65C","#35D6C4"],z:["One size"],g:"Scarves & Hijabs",img:PX(20613737)},
+/* women: knitwear */
+{n:"Ivory Cable Cardigan",c:"w",p:219,s:"top",k:["#F4F2FB","#E0A96D"],g:"Knitwear",img:PX(14641422)},
+{n:"Windowpane Cardigan",c:"w",p:209,s:"top",k:["#D9D5F2","#8E6BFF"],g:"Knitwear",img:PX(10745027)},
+/* women: sleep & lounge */
+{n:"Silk Night Robe",c:"w",p:169,s:"abaya",k:["#6D4DE0","#FF9EC0"],g:"Sleep & Lounge",img:PX(6976783)},
+{n:"Champagne Pajama Set",c:"w",p:149,s:"top",k:["#FFE0B8","#B7A4FF"],g:"Sleep & Lounge",img:PX(6941315)},
+/* women: maternity */
+{n:"Blossom Maternity Dress",c:"w",p:249,s:"dress",k:["#FF9EC0","#7FE8DA"],t:"New",g:"Maternity",img:PX(18417180)},
+{n:"Lilac Maternity Gown",c:"w",p:269,s:"dress",k:["#B7A4FF","#E6DCFF"],g:"Maternity",img:PX(30551512)},
+/* baby: bodysuits & tops */
+{n:"First Hello Bodysuit",c:"b",p:39,s:"onesie",k:["#F4F2FB","#B7A4FF"],t:"New",g:"Bodysuits & Tops",img:PX(37866034)},
+{n:"Stripe Day Bodysuit",c:"b",p:45,s:"onesie",k:["#D9D5F2","#8E6BFF"],g:"Bodysuits & Tops",img:PX(5791337)},
+{n:"Blush Bodysuit",c:"b",p:49,s:"onesie",k:["#FFB6CF","#FF9EC0"],g:"Bodysuits & Tops",img:PX(3875213)},
+{n:"Everyday Bodysuit 3-Pack",c:"b",p:99,s:"onesie",k:["#BFF3EC","#7FE8DA"],t:"Bundle",g:"Bodysuits & Tops",img:PX(16681603)},
+/* baby: rompers */
+{n:"Denim Day Romper",c:"b",p:79,s:"romper",k:["#7FC7FF","#4A6FE3"],g:"Rompers",img:PX(13340850)},
+{n:"Blush Bow Romper",c:"b",p:69,s:"romper",k:["#FFD3E2","#FFB6CF"],g:"Rompers",img:PX(14471953)},
+{n:"Knit Teddy Romper",c:"b",p:89,s:"romper",k:["#E0A96D","#FFC38A"],t:"Popular",g:"Rompers",img:PX(14471948)},
+{n:"Floral Bow Romper",c:"b",p:75,s:"romper",k:["#7FC7FF","#B7A4FF"],g:"Rompers",img:PX(33016297)},
+/* baby: sleepsuits */
+{n:"Cosy Animal Sleepsuit",c:"b",p:95,s:"romper",k:["#B7A4FF","#35D6C4"],g:"Sleepsuits",img:PX(8506337)},
+{n:"Cloud Zip Sleepsuit",c:"b",p:89,s:"romper",k:["#E6DCFF","#BFF3EC"],t:"New",g:"Sleepsuits",img:PX(32410088)},
+/* baby: frocks & dresses */
+{n:"Party Puff Dress",c:"b",p:139,s:"dress",k:["#9B6BD6","#FF9EC0"],g:"Frocks & Dresses",img:PX(27262661)},
+{n:"Garden Frock",c:"b",p:129,s:"dress",k:["#7FE8DA","#FFD3E2"],g:"Frocks & Dresses",img:PX(27816522)},
+{n:"Pink Petal Dress",c:"b",p:119,s:"dress",k:["#FFB6CF","#FF9EC0"],t:"Popular",g:"Frocks & Dresses",img:PX(33807439)},
+{n:"Celebration Dress",c:"b",p:149,s:"dress",k:["#F4F2FB","#FFC38A"],g:"Frocks & Dresses",img:PX(16640332)},
+/* baby: sets & gifts */
+{n:"Newborn Welcome Set",c:"b",p:189,s:"onesie",k:["#BFF3EC","#F4F2FB"],t:"Gift",g:"Sets & Gifts",img:PX(12243589)},
+{n:"Five-Piece Gift Box",c:"b",p:229,s:"onesie",k:["#FFD3E2","#B7A4FF"],g:"Sets & Gifts",img:PX(4858394)},
+/* baby: winter warmers */
+{n:"Snow Day Suit",c:"b",p:179,s:"romper",k:["#7FC7FF","#E6DCFF"],t:"New",g:"Winter Warmers",img:PX(11258764)},
+{n:"Alpine Knit Set",c:"b",p:159,s:"onesie",k:["#FFB6CF","#BFF3EC"],g:"Winter Warmers",img:PX(10966095)},
+{n:"Red Spark Snowsuit",c:"b",p:169,s:"romper",k:["#E34A5F","#FFC38A"],g:"Winter Warmers",img:PX(744790)},
+/* baby: blankets & swaddles */
+{n:"Cloud Swaddle Wrap",c:"b",p:89,s:"blanket",k:["#BFF3EC","#E6DCFF"],g:"Blankets & Swaddles",img:PX(30196758)},
+{n:"Peach Blossom Swaddle",c:"b",p:95,s:"blanket",k:["#FFD3E2","#FFE0B8"],t:"Popular",g:"Blankets & Swaddles",img:PX(35856455)},
+{n:"Snug Knit Blanket",c:"b",p:129,s:"blanket",k:["#E0D9C8","#B7A4FF"],g:"Blankets & Swaddles",img:PX(38417161)},
+{n:"Forest Wrap Blanket",c:"b",p:99,s:"blanket",k:["#7FA65C","#35D6C4"],g:"Blankets & Swaddles",img:PX(35065933)},
+/* baby: essentials */
+{n:"Mealtime Bib 2-Pack",c:"b",p:35,s:"bib",k:["#FFC38A","#FF9EC0"],t:"2-pack",z:["One size"],g:"Essentials",img:PX(9305088)},
+{n:"Plaid Bib Set",c:"b",p:39,s:"bib",k:["#4A6FE3","#7FC7FF"],z:["One size"],g:"Essentials",img:PX(12953262)},
+{n:"Little Socks 3-Pack",c:"b",p:35,s:"sock",k:["#BFF3EC","#FFD3E2"],t:"3-pack",z:["0-6m","6-12m","1-2y"],g:"Essentials",img:PX(7566233)},
+{n:"Bonnet & Socks Set",c:"b",p:59,s:"cap",k:["#F4F2FB","#FFD3E2"],z:["One size"],g:"Essentials",img:PX(7566261)},
+{n:"Knit Booties",c:"b",p:49,s:"shoe",k:["#E0A96D","#FFD3E2"],z:["0-6m","6-12m"],g:"Essentials",img:PX(7341306)},
+{n:"First Steps Shoes",c:"b",p:79,s:"shoe",k:["#7FC7FF","#B7A4FF"],z:["6-12m","1-2y"],g:"Essentials",img:PX(35462990)}
 ].map((x,i)=>({...x,id:i}));
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const fmt=n=>"QAR "+n.toLocaleString("en-US");
@@ -192,21 +273,30 @@ const shot=(p)=>`<img class="ph" src="${p.img}" alt="${p.n}" loading="lazy" deco
 
 // hero wordmark: one orchestrated entrance
 $("#word").innerHTML=[..."nuvayaQ"].map((c,i)=>`<span class="ch" style="--i:${i}" aria-hidden="true">${c}</span>`).join("");
-$("#mq").innerHTML=Array(4).fill(["Abayas","Dresses","Knitwear","Baby onesies","Rompers","Sleepsuits","Modest wear"].map(t=>`<span>${t}</span><em>✦</em>`).join("")).join("");
+$("#mq").innerHTML=Array(4).fill(["Abayas","Jalabiyas","Kaftans","Modest dresses","Tops & tunics","Scarves & hijabs","Maternity","Baby bodysuits","Rompers","Sleepsuits","Baby frocks","Swaddles","Gift sets"].map(t=>`<span>${t}</span><em>✦</em>`).join("")).join("");
 
 // products
-let filter="all",sel={},cart=[];
+let filter="all",grp="all",sel={},cart=[];
 try{cart=JSON.parse(localStorage.getItem("nvq")||"[]").filter(x=>P[x.id]&&x.q>0&&x.size)}catch(e){cart=[]}
 const save=()=>{try{localStorage.setItem("nvq",JSON.stringify(cart))}catch(e){}};
-function grid(){
-  const list=P.filter(p=>filter==="all"||p.c===filter);
-  $("#grid").innerHTML=list.map((p,n)=>{
-    const S=p.c==="w"?WS:BS,cur=sel[p.id]||S[0];
-    return `<article class="card" style="--n:${n}" data-id="${p.id}"><div class="art" style="${bg(p)}">${art(p,p.id)}${shot(p)}${p.t?`<span class="tag">${p.t}</span>`:""}</div><h4>${p.n}</h4><p class="price">${fmt(p.p)}</p><div class="sizes" role="group" aria-label="Size">${S.map(s=>`<button data-sz="${s}" aria-pressed="${s===cur}">${s}</button>`).join("")}</div><button class="add">Add to bag</button></article>`}).join("");
+const SZ=p=>p.z||(p.c==="w"?WS:BS);
+const szL=s=>s==="One size"?s:"Size "+s;
+function chipRow(){
+  const gs=[...new Set(P.filter(p=>filter==="all"||p.c===filter).map(p=>p.g))];
+  const all=filter==="w"?"All women":filter==="b"?"All baby":"All items";
+  $("#chips").innerHTML=[["all",all],...gs.map(g=>[g,g])].map(([v,l])=>`<button data-g="${v}" aria-pressed="${v===grp}">${l}</button>`).join("");
 }
-grid();
-$$(".tabs button").forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b));grid()});
-$$("[data-go]").forEach(a=>a.addEventListener("click",()=>{filter=a.dataset.go;$$(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f===filter));grid()}));
+function setTop(f){filter=f;grp="all";$$(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f===filter));chipRow();grid()}
+function grid(){
+  const list=P.filter(p=>(filter==="all"||p.c===filter)&&(grp==="all"||p.g===grp));
+  $("#grid").innerHTML=list.map((p,n)=>{
+    const S=SZ(p),cur=sel[p.id]||S[0];
+    return `<article class="card" style="--n:${n}" data-id="${p.id}"><div class="art" style="${bg(p)}">${art(p,p.id)}${shot(p)}${p.t?`<span class="tag">${p.t}</span>`:""}</div><span class="grp">${p.g}</span><h4>${p.n}</h4><p class="price">${fmt(p.p)}</p><div class="sizes" role="group" aria-label="Size">${S.map(s=>`<button data-sz="${s}" aria-pressed="${s===cur}">${s}</button>`).join("")}</div><button class="add">Add to bag</button></article>`}).join("");
+}
+chipRow();grid();
+$$(".tabs button").forEach(b=>b.onclick=()=>setTop(b.dataset.f));
+$("#chips").addEventListener("click",e=>{const b=e.target.closest("[data-g]");if(!b)return;grp=b.dataset.g;chipRow();grid()});
+$$("[data-go]").forEach(a=>a.addEventListener("click",()=>setTop(a.dataset.go)));
 
 // tilt
 $("#grid").addEventListener("pointermove",e=>{const c=e.target.closest(".card");if(!c||e.pointerType!=="mouse")return;const r=c.getBoundingClientRect();c.style.setProperty("--ry",((e.clientX-r.left)/r.width-.5)*10+"deg");c.style.setProperty("--rx",-((e.clientY-r.top)/r.height-.5)*10+"deg")});
@@ -219,7 +309,7 @@ $("#grid").addEventListener("click",e=>{
   const sz=e.target.closest("[data-sz]");
   if(sz){sel[id]=sz.dataset.sz;[...card.querySelectorAll(".sizes button")].forEach(b=>b.setAttribute("aria-pressed",b===sz));return}
   if(e.target.closest(".add")){
-    const p=P[id],size=sel[id]||(p.c==="w"?WS[0]:BS[0]),it=cart.find(x=>x.id===id&&x.size===size);
+    const p=P[id],size=sel[id]||SZ(p)[0],it=cart.find(x=>x.id===id&&x.size===size);
     it?it.q++:cart.push({id,size,q:1});save();draw();fly(e.target.closest(".add"));toast(p.n+" added to your bag");
   }
 });
@@ -238,7 +328,7 @@ function draw(){
   $("#cnt").textContent=cart.reduce((s,x)=>s+x.q,0);
   $("#tot").textContent=fmt(total());
   $("#send").disabled=!cart.length;$("#form").hidden=!cart.length;
-  $("#items").innerHTML=cart.length?cart.map((x,i)=>{const p=P[x.id];return `<div class="it"><div class="th" style="${bg(p)}">${art(p,"c"+i)}${shot(p)}</div><div class="i"><b>${p.n}</b><small>Size ${x.size} · ${fmt(p.p*x.q)}</small></div><div class="q"><button data-d="${i}" aria-label="Fewer">−</button><span>${x.q}</span><button data-u="${i}" aria-label="More">+</button></div></div>`}).join(""):`<div class="empty"><p>Your bag is empty.</p><button class="btn" id="shopNow">Browse the collection</button></div>`;
+  $("#items").innerHTML=cart.length?cart.map((x,i)=>{const p=P[x.id];return `<div class="it"><div class="th" style="${bg(p)}">${art(p,"c"+i)}${shot(p)}</div><div class="i"><b>${p.n}</b><small>${szL(x.size)} · ${fmt(p.p*x.q)}</small></div><div class="q"><button data-d="${i}" aria-label="Fewer">−</button><span>${x.q}</span><button data-u="${i}" aria-label="More">+</button></div></div>`}).join(""):`<div class="empty"><p>Your bag is empty.</p><button class="btn" id="shopNow">Browse the collection</button></div>`;
 }
 $("#items").addEventListener("click",e=>{
   const d=e.target.closest("[data-d]"),u=e.target.closest("[data-u]");
@@ -255,7 +345,7 @@ $("#send").onclick=()=>{
   if(!cart.length)return;
   if(!n||!a){$("#err").textContent="Please add your name and delivery address.";return}
   $("#err").textContent="";
-  const lines=cart.map(x=>`• ${x.q} x ${P[x.id].n} (Size ${x.size}) - ${fmt(P[x.id].p*x.q)}`).join("\n");
+  const lines=cart.map(x=>`• ${x.q} x ${P[x.id].n} (${szL(x.size)}) - ${fmt(P[x.id].p*x.q)}`).join("\n");
   const msg=`Hello nuvayaQ! I would like to place an order:\n\n${lines}\n\nTotal: ${fmt(total())}\n\nName: ${n}${ph?"\nMobile: "+ph:""}\nDelivery: ${a}`;
   const u=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
   $("#fbl").href=u;$("#fb").style.display="block";
