@@ -168,20 +168,22 @@ aside h3{font-size:26px;margin:0}
 const WA="97400000000";
 const SH={dress:"M38 8L62 8L60 30L76 112L24 112L40 30Z",abaya:"M36 8Q50 18 64 8L86 42L80 112L20 112L14 42Z",top:"M34 10Q50 22 66 10L92 34L82 52L72 44L72 108L28 108L28 44L18 52L8 34Z",onesie:"M36 10Q50 22 64 10L88 28L78 44L68 38L68 80Q60 94 50 94Q40 94 32 80L32 38L22 44L12 28Z",romper:"M36 10Q50 22 64 10L84 26L76 40L68 36L70 92L56 92L50 70L44 92L30 92L32 36L24 40L16 26Z"};
 const WS=["XS","S","M","L","XL"],BS=["0-3m","3-6m","6-12m","1-2y"];
+// Demo photos: each product maps to a real photo whose subject matches its name (free Pexels license).
+const PX=id=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&h=690&fit=crop`;
 const P=[
-{n:"Aurora Pleat Abaya",c:"w",p:389,s:"abaya",k:["#8E6BFF","#35D6C4"],t:"New"},
-{n:"Lumen Satin Dress",c:"w",p:259,s:"dress",k:["#FF9EC0","#FFC38A"]},
-{n:"Orbit Knit Top",c:"w",p:179,s:"top",k:["#35D6C4","#8E6BFF"]},
-{n:"Halo Modest Kaftan",c:"w",p:299,s:"abaya",k:["#FFC38A","#FF9EC0"],t:"Popular"},
-{n:"Nova Cloud Hoodie",c:"w",p:199,s:"top",k:["#B7A4FF","#7FE8DA"]},
-{n:"Velvet Dusk Dress",c:"w",p:279,s:"dress",k:["#6D4DE0","#FF9EC0"]},
-{n:"Cloud Onesie",c:"b",p:69,s:"onesie",k:["#BFF3EC","#B7A4FF"],t:"Soft cotton"},
-{n:"Stardust Romper",c:"b",p:89,s:"romper",k:["#FFD3E2","#FFC38A"],t:"New"},
-{n:"Mini Aurora Dress",c:"b",p:109,s:"dress",k:["#B7A4FF","#FF9EC0"]},
-{n:"Tiny Orbit Top",c:"b",p:79,s:"top",k:["#7FE8DA","#B7A4FF"]},
-{n:"Lullaby Sleepsuit",c:"b",p:85,s:"romper",k:["#E6DCFF","#BFF3EC"]},
-{n:"Moon Baby Onesie",c:"b",p:65,s:"onesie",k:["#FFE0B8","#FFB6CF"],t:"Popular"}
-].map((x,i)=>({...x,id:i,img:"https://picsum.photos/seed/nvq-"+x.n.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"/600/690"}));
+{n:"Aurora Pleat Abaya",c:"w",p:389,s:"abaya",k:["#8E6BFF","#35D6C4"],t:"New",img:PX(13791314)},
+{n:"Lumen Satin Dress",c:"w",p:259,s:"dress",k:["#FF9EC0","#FFC38A"],img:PX(37728714)},
+{n:"Orbit Knit Top",c:"w",p:179,s:"top",k:["#35D6C4","#8E6BFF"],img:PX(2343699)},
+{n:"Halo Modest Kaftan",c:"w",p:299,s:"abaya",k:["#FFC38A","#FF9EC0"],t:"Popular",img:PX(7249704)},
+{n:"Nova Cloud Hoodie",c:"w",p:199,s:"top",k:["#B7A4FF","#7FE8DA"],img:PX(7479808)},
+{n:"Velvet Dusk Dress",c:"w",p:279,s:"dress",k:["#6D4DE0","#FF9EC0"],img:PX(16894090)},
+{n:"Cloud Onesie",c:"b",p:69,s:"onesie",k:["#BFF3EC","#B7A4FF"],t:"Soft cotton",img:PX(3845426)},
+{n:"Stardust Romper",c:"b",p:89,s:"romper",k:["#FFD3E2","#FFC38A"],t:"New",img:PX(7578994)},
+{n:"Mini Aurora Dress",c:"b",p:109,s:"dress",k:["#B7A4FF","#FF9EC0"],img:PX(18746931)},
+{n:"Tiny Orbit Top",c:"b",p:79,s:"top",k:["#7FE8DA","#B7A4FF"],img:PX(32233693)},
+{n:"Lullaby Sleepsuit",c:"b",p:85,s:"romper",k:["#E6DCFF","#BFF3EC"],img:PX(8756307)},
+{n:"Moon Baby Onesie",c:"b",p:65,s:"onesie",k:["#FFE0B8","#FFB6CF"],t:"Popular",img:PX(9300617)}
+].map((x,i)=>({...x,id:i}));
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const fmt=n=>"QAR "+n.toLocaleString("en-US");
 const art=(p,id)=>`<svg viewBox="0 0 100 120" aria-hidden="true"><defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.k[0]}"/><stop offset="1" stop-color="${p.k[1]}"/></linearGradient></defs><path d="${SH[p.s]}" fill="url(#g${id})"/><path d="${SH[p.s]}" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
