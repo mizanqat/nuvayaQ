@@ -17,7 +17,7 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px)
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);overflow-x:hidden}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 :focus-visible{outline:3px solid var(--a);outline-offset:3px;border-radius:8px}
-.glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,var(--a),transparent 65%);opacity:.22;transform:translate(-50%,-50%);left:50%;top:30%;filter:blur(30px);transition:left .4s ease-out,top .4s ease-out}
+.glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,var(--a),transparent 65%);opacity:.22;left:0;top:0;transform:translate(30vw,10vh);filter:blur(30px);transition:transform .5s ease-out}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px auto 0;width:min(1120px,calc(100% - 24px));padding:10px 14px 10px 22px;border-radius:999px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .logo{font:700 20px var(--disp);letter-spacing:-.04em;text-decoration:none;color:var(--ink)}
 .logo i{font-style:normal;background:linear-gradient(120deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -29,7 +29,7 @@ nav a.l:hover{color:var(--ink)}
 .bump{animation:bump .5s}
 @keyframes bump{40%{transform:scale(1.18) rotate(-4deg)}}
 main{position:relative;z-index:1}
-.hero{position:relative;min-height:calc(100svh - 70px);display:grid;place-items:center;text-align:center;padding:48px 20px 80px;overflow:hidden}
+.hero{position:relative;min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);display:grid;place-items:center;text-align:center;padding:48px 20px 80px;overflow:hidden}
 .orb{position:absolute;width:min(70vw,620px);aspect-ratio:1;left:50%;top:50%;transform:translate(-50%,-52%);z-index:0;filter:blur(2px)}
 .orb span{position:absolute;inset:0;border-radius:42% 58% 63% 37%/45% 40% 60% 55%;mix-blend-mode:multiply;opacity:.85;animation:morph 14s ease-in-out infinite alternate}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .orb span{mix-blend-mode:screen;opacity:.5}}
@@ -37,8 +37,8 @@ main{position:relative;z-index:1}
 .orb span:nth-child(2){background:radial-gradient(circle at 70% 40%,var(--b),transparent 70%);animation-duration:18s;animation-delay:-5s}
 .orb span:nth-child(3){background:radial-gradient(circle at 50% 75%,var(--c),transparent 70%);animation-duration:22s;animation-delay:-9s}
 @keyframes morph{0%{border-radius:42% 58% 63% 37%/45% 40% 60% 55%;transform:rotate(0) scale(1)}50%{border-radius:60% 40% 38% 62%/58% 62% 38% 42%;transform:rotate(120deg) scale(1.08)}100%{border-radius:38% 62% 52% 48%/40% 55% 45% 60%;transform:rotate(300deg) scale(.96)}}
-.hero>div{position:relative;z-index:1;max-width:900px}
-.word{font:700 clamp(54px,14vw,168px)/.95 var(--disp);letter-spacing:-.06em;margin:0}
+.hc{position:relative;z-index:1;max-width:1000px}
+.word{font:700 clamp(44px,12vw,150px)/1 var(--disp);letter-spacing:-.06em;margin:0;white-space:nowrap}
 .word .ch{display:inline-block;background:linear-gradient(110deg,var(--ink) 20%,var(--a) 45%,var(--c) 55%,var(--ink) 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s cubic-bezier(.2,.9,.2,1) both,sheen 7s linear infinite;animation-delay:calc(var(--i)*70ms),calc(var(--i)*70ms + .9s)}
 @keyframes rise{from{transform:translateY(80%) rotateX(80deg);opacity:0;filter:blur(10px)}}
 @keyframes sheen{to{background-position:-250% 0}}
@@ -62,7 +62,7 @@ h3{font:700 clamp(28px,5vw,52px)/1.05 var(--disp);letter-spacing:-.05em;margin:0
 .tabs button{position:relative;z-index:1;padding:10px 22px;border-radius:999px;font-weight:700;color:var(--mut);transition:color .3s,background .3s}
 .tabs button[aria-pressed=true]{background:var(--btn);color:var(--btnt)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.card{position:relative;border-radius:28px;background:var(--card);border:1px solid var(--line);padding:14px 14px 18px;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .3s;backdrop-filter:blur(8px);animation:pop .6s cubic-bezier(.2,.9,.2,1) both;animation-delay:calc(var(--n)*60ms)}
+.card{position:relative;border-radius:28px;background:var(--card);border:1px solid var(--line);padding:14px 14px 18px;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .3s;backdrop-filter:blur(8px);animation:pop .6s cubic-bezier(.2,.9,.2,1) backwards;animation-delay:calc(var(--n)*60ms)}
 @keyframes pop{from{opacity:0;transform:translateY(30px) scale(.94)}}
 .card:hover{box-shadow:0 24px 50px -24px var(--a)}
 .art{height:230px;border-radius:20px;display:grid;place-items:center;position:relative;overflow:hidden}
@@ -85,18 +85,18 @@ footer{margin-top:90px;padding:50px 20px calc(40px + env(safe-area-inset-bottom,
 footer .logo{font-size:34px}
 .shade{position:fixed;inset:0;background:rgba(10,8,30,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:40}
 .shade.on{opacity:1;pointer-events:auto}
-aside{position:fixed;right:0;top:0;bottom:0;width:min(440px,100%);z-index:50;background:var(--bg);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .5s cubic-bezier(.2,.9,.2,1);padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px)}
-aside.on{transform:none}
+aside{position:fixed;right:0;top:0;bottom:0;width:min(440px,100%);z-index:50;background:var(--bg);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);visibility:hidden;transition:transform .5s cubic-bezier(.2,.9,.2,1),visibility 0s .5s;padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px)}
+aside.on{transform:none;visibility:visible;transition-delay:0s}
 aside header{display:flex;justify-content:space-between;align-items:center}
 aside h3{font-size:26px;margin:0}
 .x{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);font-size:20px}
 .items{flex:1;overflow-y:auto;margin:16px 0}
-.it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);animation:pop .4s both}
+.it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);animation:pop .4s backwards}
 .it .th{width:56px;height:56px;border-radius:14px;flex:none;display:grid;place-items:center}.it .th svg{width:60%}
 .it div.i{flex:1;min-width:0}.it b{display:block;font-size:14px;line-height:1.3}.it small{color:var(--mut)}
 .q{display:flex;align-items:center;gap:8px}.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line)}
 .empty{text-align:center;color:var(--mut);padding:50px 10px}
-.form{display:grid;gap:8px}
+.form{display:grid;gap:8px}.form[hidden]{display:none}.fb{display:none;text-align:center;font-size:14px;color:var(--mut);margin-top:10px}.fb a{color:var(--ink);font-weight:700}
 .form input,.form textarea{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
 .err{color:#d6336c;font-size:13px;min-height:18px;margin:0}
 .tot{display:flex;justify-content:space-between;font:700 18px var(--disp);letter-spacing:-.03em;margin:10px 0}
@@ -104,7 +104,7 @@ aside h3{font-size:26px;margin:0}
 .wa:disabled{opacity:.45;cursor:not-allowed}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,120px);z-index:60;padding:12px 22px;border-radius:999px;background:var(--btn);color:var(--btnt);font-weight:700;transition:transform .45s cubic-bezier(.2,1.2,.3,1)}
 .toast.on{transform:translate(-50%,0)}
-@media (max-width:720px){nav .links{display:none}.chip{display:none}}
+@media (max-width:1100px){.chip{display:none}}@media (max-width:720px){nav .links{display:none}.orb{width:92vw}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -119,7 +119,7 @@ aside h3{font-size:26px;margin:0}
   <div class="hero">
     <div class="orb" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="chip c1">Designed in Doha</div><div class="chip c2">Order on WhatsApp</div><div class="chip c3">Women and baby</div>
-    <div>
+    <div class="hc">
       <h1 class="word" id="word" aria-label="nuvayaQ"></h1>
       <h2>Clothing for her, and for the little ones.</h2>
       <p>Modest, modern pieces for women and soft essentials for babies. Fill your bag, then send your order to us on WhatsApp.</p>
@@ -143,10 +143,10 @@ aside h3{font-size:26px;margin:0}
     </div>
   </section>
 </main>
-<footer><a class="logo" href="#top">nuvaya<i>Q</i></a><p>Women's and baby clothing, Qatar.</p><p><a href="#" id="fwa" style="color:inherit">Chat with us on WhatsApp</a></p></footer>
+<footer><a class="logo" href="#top">nuvaya<i>Q</i></a><p>Women's and baby clothing, Qatar.</p><p><a href="#" id="fwa" target="_blank" rel="noopener" style="color:inherit">Chat with us on WhatsApp</a></p></footer>
 
 <div class="shade" id="shade"></div>
-<aside id="drawer" aria-label="Shopping bag" aria-hidden="true">
+<aside id="drawer" aria-label="Shopping bag" inert>
   <header><h3>Your bag</h3><button class="x" id="close" aria-label="Close bag">×</button></header>
   <div class="items" id="items"></div>
   <div class="form" id="form">
@@ -155,7 +155,8 @@ aside h3{font-size:26px;margin:0}
     <textarea id="ad" rows="2" placeholder="Delivery area and address in Qatar"></textarea>
     <p class="err" id="err"></p>
     <div class="tot"><span>Total</span><span id="tot">QAR 0</span></div>
-    <button class="wa" id="send"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.3.500-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.400.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400z"/></svg>Order on WhatsApp</button>
+    <button class="wa" id="send" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.3.500-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.400.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400z"/></svg>Order on WhatsApp</button>
+    <p class="fb" id="fb">WhatsApp did not open? <a id="fbl" href="#" target="_blank" rel="noopener">Tap here to send your order</a></p>
   </div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
@@ -186,11 +187,11 @@ const bg=p=>`background:linear-gradient(145deg,${p.k[0]}55,${p.k[1]}44)`;
 
 // hero wordmark: one orchestrated entrance
 $("#word").innerHTML=[..."nuvayaQ"].map((c,i)=>`<span class="ch" style="--i:${i}" aria-hidden="true">${c}</span>`).join("");
-$("#mq").innerHTML=Array(2).fill(["Abayas","Dresses","Knitwear","Baby onesies","Rompers","Sleepsuits","Modest wear"].map(t=>`<span>${t}</span><em>✦</em>`).join("")).join("");
+$("#mq").innerHTML=Array(4).fill(["Abayas","Dresses","Knitwear","Baby onesies","Rompers","Sleepsuits","Modest wear"].map(t=>`<span>${t}</span><em>✦</em>`).join("")).join("");
 
 // products
 let filter="all",sel={},cart=[];
-try{cart=JSON.parse(localStorage.getItem("nvq")||"[]")}catch(e){}
+try{cart=JSON.parse(localStorage.getItem("nvq")||"[]").filter(x=>P[x.id]&&x.q>0&&x.size)}catch(e){cart=[]}
 const save=()=>{try{localStorage.setItem("nvq",JSON.stringify(cart))}catch(e){}};
 function grid(){
   const list=P.filter(p=>filter==="all"||p.c===filter);
@@ -205,13 +206,13 @@ $$("[data-go]").forEach(a=>a.addEventListener("click",()=>{filter=a.dataset.go;$
 // tilt
 $("#grid").addEventListener("pointermove",e=>{const c=e.target.closest(".card");if(!c||e.pointerType!=="mouse")return;const r=c.getBoundingClientRect();c.style.setProperty("--ry",((e.clientX-r.left)/r.width-.5)*10+"deg");c.style.setProperty("--rx",-((e.clientY-r.top)/r.height-.5)*10+"deg")});
 $("#grid").addEventListener("pointerout",e=>{const c=e.target.closest(".card");if(c){c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")}});
-addEventListener("pointermove",e=>{const g=$("#glow");g.style.left=e.clientX+"px";g.style.top=e.clientY+"px"});
+addEventListener("pointermove",e=>{if(e.pointerType==="mouse")$("#glow").style.transform=`translate(${e.clientX-210}px,${e.clientY-210}px)`});
 
 // grid clicks: sizes + add
 $("#grid").addEventListener("click",e=>{
   const card=e.target.closest(".card");if(!card)return;const id=+card.dataset.id;
   const sz=e.target.closest("[data-sz]");
-  if(sz){sel[id]=sz.dataset.sz;$$(".sizes button",card).length;[...card.querySelectorAll(".sizes button")].forEach(b=>b.setAttribute("aria-pressed",b===sz));return}
+  if(sz){sel[id]=sz.dataset.sz;[...card.querySelectorAll(".sizes button")].forEach(b=>b.setAttribute("aria-pressed",b===sz));return}
   if(e.target.closest(".add")){
     const p=P[id],size=sel[id]||(p.c==="w"?WS[0]:BS[0]),it=cart.find(x=>x.id===id&&x.size===size);
     it?it.q++:cart.push({id,size,q:1});save();draw();fly(e.target.closest(".add"));toast(p.n+" added to your bag");
@@ -231,15 +232,15 @@ const total=()=>cart.reduce((s,x)=>s+P[x.id].p*x.q,0);
 function draw(){
   $("#cnt").textContent=cart.reduce((s,x)=>s+x.q,0);
   $("#tot").textContent=fmt(total());
-  $("#send").disabled=!cart.length;
+  $("#send").disabled=!cart.length;$("#form").hidden=!cart.length;
   $("#items").innerHTML=cart.length?cart.map((x,i)=>{const p=P[x.id];return `<div class="it"><div class="th" style="${bg(p)}">${art(p,"c"+i)}</div><div class="i"><b>${p.n}</b><small>Size ${x.size} · ${fmt(p.p*x.q)}</small></div><div class="q"><button data-d="${i}" aria-label="Fewer">−</button><span>${x.q}</span><button data-u="${i}" aria-label="More">+</button></div></div>`}).join(""):`<div class="empty"><p>Your bag is empty.</p><button class="btn" id="shopNow">Browse the collection</button></div>`;
 }
 $("#items").addEventListener("click",e=>{
   const d=e.target.closest("[data-d]"),u=e.target.closest("[data-u]");
-  if(d){const i=+d.dataset.d;--cart[i].q<1&&cart.splice(i,1)}else if(u){cart[+u.dataset.u].q++}else if(e.target.id==="shopNow"){open_(false);location.hash="#shop";return}else return;
+  if(d){const i=+d.dataset.d;--cart[i].q<1&&cart.splice(i,1)}else if(u){cart[+u.dataset.u].q++}else if(e.target.id==="shopNow"){open_(false);$("#shop").scrollIntoView({behavior:"smooth"});return}else return;
   save();draw();
 });
-function open_(on){$("#drawer").classList.toggle("on",on);$("#shade").classList.toggle("on",on);$("#drawer").setAttribute("aria-hidden",!on);if(on)$("#close").focus()}
+function open_(on){$("#drawer").classList.toggle("on",on);$("#shade").classList.toggle("on",on);$("#drawer").inert=!on;if(on)setTimeout(()=>$("#close").focus(),50);else $("#bagBtn").focus()}
 $("#bagBtn").onclick=()=>open_(true);$("#close").onclick=$("#shade").onclick=()=>open_(false);
 addEventListener("keydown",e=>e.key==="Escape"&&open_(false));
 
@@ -251,7 +252,9 @@ $("#send").onclick=()=>{
   $("#err").textContent="";
   const lines=cart.map(x=>`• ${x.q} x ${P[x.id].n} (Size ${x.size}) - ${fmt(P[x.id].p*x.q)}`).join("\n");
   const msg=`Hello nuvayaQ! I would like to place an order:\n\n${lines}\n\nTotal: ${fmt(total())}\n\nName: ${n}${ph?"\nMobile: "+ph:""}\nDelivery: ${a}`;
-  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+  const u=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  $("#fbl").href=u;$("#fb").style.display="block";
+  window.open(u,"_blank");
   toast("Opening WhatsApp");
 };
 $("#fwa").href=`https://wa.me/${WA}?text=${encodeURIComponent("Hello nuvayaQ!")}`;
