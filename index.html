@@ -39,8 +39,6 @@ main{position:relative;z-index:1}
 @keyframes morph{0%{border-radius:42% 58% 63% 37%/45% 40% 60% 55%;transform:rotate(0) scale(1)}50%{border-radius:60% 40% 38% 62%/58% 62% 38% 42%;transform:rotate(120deg) scale(1.08)}100%{border-radius:38% 62% 52% 48%/40% 55% 45% 60%;transform:rotate(300deg) scale(.96)}}
 .hc{position:relative;z-index:1;max-width:1000px}
 .word{font:700 clamp(44px,12vw,150px)/1 var(--disp);letter-spacing:-.06em;margin:0;white-space:nowrap}
-.hero-img-wrap{position:relative;text-align:center;z-index:1;max-width:880px;margin:0 auto 0}
-.hero-img{width:100%;max-width:880px;height:auto;border-radius:24px;display:block;box-shadow:0 30px 60px -24px rgba(26,20,64,.45);border:1px solid var(--line)}
 .word .ch{display:inline-block;background:linear-gradient(110deg,var(--ink) 20%,var(--a) 45%,var(--c) 55%,var(--ink) 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s cubic-bezier(.2,.9,.2,1) both,sheen 7s linear infinite;animation-delay:calc(var(--i)*70ms),calc(var(--i)*70ms + .9s)}
 @keyframes rise{from{transform:translateY(80%) rotateX(80deg);opacity:0;filter:blur(10px)}}
 @keyframes sheen{to{background-position:-250% 0}}
@@ -54,7 +52,6 @@ main{position:relative;z-index:1}
 .chip.c1{left:6%;top:24%}.chip.c2{right:7%;top:36%;animation-delay:-2s}.chip.c3{left:12%;bottom:16%;animation-delay:-4s}
 @keyframes float{50%{transform:translateY(-16px)}}
 .marq{overflow:hidden;border-block:1px solid var(--line);padding:18px 0;background:var(--card)}
-.hero-img-wrap .chip{display:none}
 .marq div{display:flex;gap:44px;width:max-content;animation:scroll 32s linear infinite;font:500 clamp(20px,3vw,34px) var(--disp);letter-spacing:-.04em;white-space:nowrap}
 .marq em{font-style:normal;color:var(--a)}
 @keyframes scroll{to{transform:translateX(-50%)}}
@@ -133,9 +130,6 @@ aside h3{font-size:26px;margin:0}
       <h1 class="word" id="word" aria-label="nuvayaQ"></h1>
       <h2>Clothing for her, and for the little ones.</h2>
       <p>Abayas, jalabiyas, dresses, hijabs and maternity wear for her — bodysuits, rompers, swaddles and gift sets for baby. Fill your bag, then send your order on WhatsApp.</p>
-      <div class="hero-img-wrap">
-        <img class="hero-img" src="https://images.pexels.com/photos/8370974/pexels-photo-8370974.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1350&fit=crop" alt="Model wearing a black abaya and hijab, showing the collection's modest fashion for women and babies">
-      </div>
       <div class="cta"><a class="btn" href="#shop" data-go="w">Shop women</a><a class="btn g" href="#shop" data-go="b">Shop baby</a></div>
     </div>
   </div>
